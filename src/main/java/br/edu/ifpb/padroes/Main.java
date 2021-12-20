@@ -2,6 +2,7 @@ package br.edu.ifpb.padroes;
 
 import br.edu.ifpb.padroes.domain.Apartment;
 import br.edu.ifpb.padroes.domain.Bungalow;
+import br.edu.ifpb.padroes.domain.MultiplePayments;
 import br.edu.ifpb.padroes.domain.Tenement;
 import br.edu.ifpb.padroes.payment.PaymentService;
 
@@ -23,13 +24,11 @@ public class Main {
         bungalow.setBuilder("Cortiço construtura");
         bungalow.setPrice(100000);
 
+
+        MultiplePayments multiplePayments = new MultiplePayments(apartment, bungalow, tenament);
+
         PaymentService paymentService = new PaymentService();
-
-        // TODO - reduzir chamadas múltiplas para uma única chamada para o método pay() utilizando o padrão composite
-        paymentService.pay(apartment);
-        paymentService.pay(bungalow);
-        paymentService.pay(tenament);
-
+        paymentService.pay(multiplePayments);
 
     }
 }
